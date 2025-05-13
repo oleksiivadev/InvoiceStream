@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link"
+
 interface Props {
   invoice: {
     description: string
@@ -17,14 +19,17 @@ export default function InvoiceCard({ invoice }: Props) {
       <p className="mb-1"><strong>Price:</strong> {invoice.amount} USDC</p>
       <p className="mb-1"><strong>From:</strong> {invoice.from.slice(0, 6)}...{invoice.from.slice(-4)}</p>
       <p className="mb-2 text-sm text-gray-400">Created: {new Date(invoice.createdAt).toLocaleString()}</p>
-      <a
-        href={`https://gateway.pinata.cloud/ipfs/${invoice.cid}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-400 underline text-sm"
-      >
-        🔗 Open in IPFS
-      </a>
+      <div className="flex justify-between">
+        <a
+          href={`https://gateway.pinata.cloud/ipfs/${invoice.cid}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 text-sm"
+        >
+        Open in IPFS
+        </a>
+        <Link href={`/invoice/${invoice.cid}`} className="text-blue-400 text-sm">Open in PDF</Link>
+      </div>
     </div>
   )
 }

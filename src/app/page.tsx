@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="flex items-center justify-between mb-6 items-center">
         <h1 className="text-3xl font-bold">📄 My Invoices</h1>
         <Link href="/create">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition">
+          <button className="shadow-md transition">
             + Create Invoice
           </button>
         </Link>

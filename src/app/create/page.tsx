@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { uploadInvoiceToIPFS } from '@/components/ipfs'
 import { useWallet } from '@solana/wallet-adapter-react'
 import Wallet from '@/components/Wallet'
+import Link from 'next/link'
 
 export type Invoice = {
   description: string,
@@ -49,7 +50,14 @@ export default function CreateInvoicePage() {
 
   return (
     <div className="max-w-md mx-auto p-6 bg-gray-900 rounded-xl shadow-xl">
-      <Wallet />
+      <div className='flex justify-between items-center'>
+        <Wallet />
+        <Link href="/">
+          <button className="shadow-md transition">
+            To Main Page
+          </button>
+        </Link>
+      </div>
       <h1 className="text-2xl font-bold mb-4">Create Invoice</h1>
 
       <input
@@ -67,7 +75,7 @@ export default function CreateInvoicePage() {
       />
 
       <button
-        className="w-full"
+        className="shadow-md transition w-full"
         onClick={handleCreate}
         disabled={loading}
       >
