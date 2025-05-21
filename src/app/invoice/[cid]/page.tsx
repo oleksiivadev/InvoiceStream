@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import QRCode from "qrcode"; 
 
 type InvoiceData = {
   from: string;
@@ -13,6 +14,7 @@ type InvoiceData = {
 export default function InvoicePage() {
   const { cid } = useParams();
   const [invoice, setInvoice] = useState<InvoiceData | null>(null);
+  const [qrDataUrl, setQrDataUrl] = useState<string | null>(null); 
 
   useEffect(() => {
     const fetchInvoice = async () => {
@@ -22,6 +24,14 @@ export default function InvoicePage() {
     };
 
     if (cid) fetchInvoice();
+  }, [cid]);
+
+  useEffect(() => {
+    if (!cid) return;
+    const url = `${window.location.origin}/invoice/${cid}`;
+    QRCode.toDataURL(url)
+      .then(setQrDataUrl)
+      .catch(console.error);
   }, [cid]);
 
   if (!invoice) {
@@ -70,10 +80,16 @@ export default function InvoicePage() {
           </table>
         </div>
 
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-gray-600 mb-6">
           <p>Thank you for using Invoxia!</p>
           <p className="mt-2">Please proceed with payment using the contract or platform link below.</p>
         </div>
+
+        {qrDataUrl && (
+          <div className="mb-6 flex justify-center print:hidden">
+            <img src={qrDataUrl} alt="QR code to invoice" className="w-32 h-32" />
+          </div>
+        )}
       </div>
 
       <div className="mt-6 flex gap-4 print:hidden">
