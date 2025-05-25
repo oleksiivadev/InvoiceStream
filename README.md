@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Invoxia
 
-## Getting Started
+**Invoxia** is a trustless, on-chain invoicing platform for Web3 freelancers and businesses. It enables users to generate invoices stored on IPFS, sign them via their crypto wallets, and get paid in USDC via smart contracts — without relying on intermediaries.
 
-First, run the development server:
+---
+
+## 🔗 Live Demo
+
+Coming soon...
+
+---
+
+## ✨ Features
+
+- Create on-chain invoices in seconds
+- Invoice metadata is stored on IPFS
+- Signed with your crypto wallet (e.g., Phantom or MetaMask)
+- 💸 USDC payments via smart contracts (coming soon)
+- 🖨️ PDF-ready invoice styling for printing or archiving
+- 🔗 Shareable invoice links
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the Repository
+
+```bash
+
+git clone https://github.com/oleksiivadev/InvoiceStream.git
+cd invoxia
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
+- Next.js 14 / App Router
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Phantom Solana Wallet Adapter (custom connect)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- IPFS for decentralized invoice storage
 
-## Learn More
+- USDC as the payment medium (via smart contract - coming soon)
 
-To learn more about Next.js, take a look at the following resources:
+- React Hook Form for form handling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Tailwind CSS for styling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

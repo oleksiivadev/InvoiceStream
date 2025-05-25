@@ -1,32 +1,37 @@
-'use client';
+'use client'
 
-import Link from "next/link";
+import { useEffect, useState } from 'react'
+import InvoiceCard from '@/components/InvoiceCard'
+import Link from 'next/link'
 
 export default function HomePage() {
+  const [invoices, setInvoices] = useState<any[]>([])
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('invoices') || '[]')
+    setInvoices(stored)
+  }, [])
 
   return (
-    <main className="min-h-screen px-4 py-16 bg-white flex flex-col items-center justify-center text-center">
-      <h1 className="text-4xl font-bold mb-4">Invoxia</h1>
-      <p className="text-lg text-muted-foreground max-w-xl mb-6">
-        Trustless invoicing for Web3 freelancers. Create, share, and get paid in USDC — fully onchain.
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-4 mb-10">
-        <Link href={'/create'}>Create Invoice</Link>
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="flex items-center justify-between mb-6 items-center">
+        <h1 className="text-3xl font-bold">📄 My Invoices</h1>
+        <Link href="/create">
+          <button className="shadow-md transition">
+            + Create Invoice
+          </button>
+        </Link>
       </div>
 
-      <section className="max-w-2xl">
-        <h2 className="text-2xl font-semibold mb-4">How it works</h2>
-        <ol className="text-left space-y-3 text-base">
-          <li>1️⃣ Fill in the invoice: amount, client wallet, and description.</li>
-          <li>2️⃣ Share the link or QR code with your client.</li>
-          <li>3️⃣ Get paid in USDC directly to your wallet via smart contract.</li>
-        </ol>
-      </section>
-
-      <footer className="mt-20 text-sm text-muted-foreground">
-
-      </footer>
-    </main>
-  );
+      {invoices.length === 0 ? (
+        <p className="text-gray-400">No invoices created yet.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {invoices.map((invoice, i) => (
+            <InvoiceCard key={i} invoice={invoice} />
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
