@@ -4,8 +4,16 @@ import { useEffect, useState } from 'react'
 import InvoiceCard from '@/components/InvoiceCard'
 import Link from 'next/link'
 
+interface Invoice {
+  amount: string,
+  cid: string,
+  createdAt: string,
+  description: string,
+  from: string,
+}
+
 export default function HomePage() {
-  const [invoices, setInvoices] = useState<any[]>([])
+  const [invoices, setInvoices] = useState<Invoice[]>([])
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('invoices') || '[]')

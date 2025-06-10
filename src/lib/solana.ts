@@ -1,6 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
 import { clusterApiUrl, Connection, SystemProgram, PublicKey, Transaction, LAMPORTS_PER_SOL } from '@solana/web3.js'
+
+export {};
+
+declare global {
+  interface Window {
+    solana?: any;
+  }
+}
 
 export const network = WalletAdapterNetwork.Devnet
 export const endpoint = clusterApiUrl(network)

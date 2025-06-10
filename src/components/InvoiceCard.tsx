@@ -30,7 +30,7 @@ export default function InvoiceCard({ invoice, currentUser }: Props) {
       
       setPaid(true)
     } catch (error) {
-      alert("Payment error")
+      alert(`Payment error: ${error}`)
     } finally {
       setIsPaying(false)
     }
