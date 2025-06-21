@@ -5,11 +5,11 @@ import InvoiceCard from '@/components/InvoiceCard'
 import Link from 'next/link'
 
 interface Invoice {
-  amount: string,
-  cid: string,
-  createdAt: string,
-  description: string,
-  from: string,
+  amount: string
+  cid: string
+  createdAt: string
+  description: string
+  from: string
 }
 
 export default function HomePage() {
@@ -21,20 +21,24 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex items-center justify-between mb-6 items-center">
-        <h1 className="text-3xl font-bold">📄 My Invoices</h1>
+    <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+        <h1 className="text-4xl font-bold tracking-tight text-white">
+          📄 My Invoices
+        </h1>
         <Link href="/create">
-          <button className="shadow-md transition">
+          <button className="px-5 py-2.5 text-sm font-medium rounded-xl bg-[#7A2828] text-white hover:bg-[#9e3434] transition duration-200 shadow-md">
             + Create Invoice
           </button>
         </Link>
       </div>
 
       {invoices.length === 0 ? (
-        <p className="text-gray-400">No invoices created yet.</p>
+        <div className="text-gray-400 text-center mt-20 text-lg">
+          No invoices created yet.
+        </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {invoices.map((invoice, i) => (
             <InvoiceCard key={i} invoice={invoice} />
           ))}
